@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.github.gary</groupId>
+    <artifactId>java-hook</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>hook-example</artifactId>
+  <properties>
+    <spring_boot_version>1.3.2.RELEASE</spring_boot_version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.gary</groupId>
+      <artifactId>hook-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.gary</groupId>
+      <artifactId>hook-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
