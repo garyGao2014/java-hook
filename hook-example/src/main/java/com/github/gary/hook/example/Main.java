@@ -25,6 +25,7 @@ public class Main extends SpringBootServletInitializer implements EmbeddedServle
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -34,6 +35,6 @@ public class Main extends SpringBootServletInitializer implements EmbeddedServle
 
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(7004);
+       // container.setPort(7004);
     }
 }
