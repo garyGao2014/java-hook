@@ -33,20 +33,20 @@ public class SecurityFilter extends OncePerRequestFilter implements Serializable
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String signatureHeader = request.getHeader("X-Hub-Signature");
-            if (signatureHeader != null && !signatureHeader.equals("")) {
+            if (signatureHeader != null && !signatureHeader.equals("") && secret != null && !secret.equals("")) {
                 //为了二次读取流
                 PreReadRequestWrapper preRequest = new PreReadRequestWrapper(request);
                 ServletInputStream inputStream = preRequest.getInputStream();
                 byte[] bytes = SercetUtil.toByteArray(inputStream);
-                String accessSecret = "sha1="+SercetUtil.HmacSHA1Encrypt(new String(bytes), secret);
+                String accessSecret = "sha1=" + SercetUtil.HmacSHA1Encrypt(new String(bytes), secret);
                 if (accessSecret.equals(signatureHeader)) {
                     logger.info("签名认证通过");
                     filterChain.doFilter(preRequest, response);
-                }else{
-                    logger.info("签名认证失败 -> signatureHeader" + signatureHeader + " -- accessSecret" +accessSecret);
+                } else {
+                    logger.info("签名认证失败 -> signatureHeader" + signatureHeader + " -- accessSecret" + accessSecret);
                 }
-            }else {
-                filterChain.doFilter(request,response);
+            } else {
+                filterChain.doFilter(request, response);
             }
         } catch (Exception e) {
             logger.error("", e);

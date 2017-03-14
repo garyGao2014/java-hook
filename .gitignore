@@ -26,4 +26,5 @@ target/
 .logs
 logs/
 *.sql
+.Archive
 
